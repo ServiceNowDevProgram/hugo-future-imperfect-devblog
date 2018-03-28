@@ -1357,7 +1357,16 @@ dl {
 #content p a,
 	#content ul li a {
 	border-bottom: dotted 2px rgba(160,160,160,.65);
+	text-decoration: underline;
+	color: blue;
 }
+
+#content p a:visited {
+	border-bottom: dotted 2px rgba(160,160,160,.65);
+	text-decoration: underline;
+	color: purple;
+}
+
 
 	#content p a:hover {
 		border-bottom-color: transparent;
