@@ -15,7 +15,7 @@ usermenu.init = function(properties) {
         $('.logout').click(function() {
             $.get('/logout.do', function(response) {
                 var logoutURL = properties.okta + '/login/signout?fromURI='; 
-                logoutURL += 'https://' + window.location.host + '/app.do'; 
+                logoutURL += window.location; 
                 window.location.href = logoutURL; 
             }); 
         });
