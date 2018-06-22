@@ -11,6 +11,7 @@ usermenu.init = function(properties) {
                 menu.attr('class', 'menu-hidden');
             });
         });
+        
 
         $('.logout').click(function() {
             $.get('/logout.do', function(response) {
