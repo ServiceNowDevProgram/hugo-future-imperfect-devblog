@@ -772,7 +772,7 @@ input[type="radio"] + label:before {
 		.image.left img,
 		.image.right img,
 		.image.center img {
-			width: 100%;
+			max-width: 100%;
 		}
 
 	.image.left {
