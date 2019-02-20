@@ -36,9 +36,7 @@
             {{ if .Site.Params.enableSearch }}
             <li class="search">
                 <a class="fa-search" href="#search">Search</a>
-                <form id="search" method="get" action="//google.com/search">
-                    <input type="text" name="q" placeholder="Search" />
-                    <input type="hidden" name="as_sitesearch" value="{{ .Site.BaseURL }}">
+                <form id="search">
                 </form>
             </li>
             {{ end }}
@@ -55,9 +53,8 @@
     <!-- Search -->
         {{ if .Site.Params.enableSearch }}
         <section>
-            <form class="search" method="get" action="//google.com/search">
+            <form class="search" method="get" action="app.do#!/search?category=Blog">
                 <input type="text" name="q" placeholder="Search" />
-                <input type="hidden" name="as_sitesearch" value="{{ .Site.BaseURL }}">
             </form>
         </section>
         {{ end }}

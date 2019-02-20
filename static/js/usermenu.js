@@ -2,12 +2,6 @@ usermenu = {};
 
 usermenu.handleLoginStatus = function (response) {
     var displayName = response.display_name; 
-    var sessionID = response.session_id;
-    if (sessionID != "SYSTEM") {
-        usermenu.session_id = sessionID;
-        window.localStorage.setItem('SessionID', sessionID);                   
-//        console.log("Set usermenu.session_id to " + sessionID);
-    }
 
     if (displayName == 'Guest') {
         $('.current-user').hide();
@@ -35,51 +29,27 @@ usermenu.init = function (properties) {
     $(document).ready(function () {
       
         this.getSession = function (token) {
-//            console.log("Entering getSession with token=" + token);
-            if (token == undefined || token == "") {
-//                console.log("No token");
-                try {
-                    token = window.localStorage.getItem('X-UserToken');
-//                    console.log("Retrieved from local storage token: " + token);
-                } catch (e) {
-                    console.log("Error: " + e);
-                }
-            } else {
-  //              console.log("Token exists and is " + token);
-            }
-
             var headers = {};
 
             if (token == undefined || token == "") {
-//                console.log("No user token");
             } else {
                 headers = { 'X-UserToken': token };
-//                console.log("adding X-UserToken to ajax call: " + token);
             }
 
             $.ajax('devportal.do?sysparm_data=\{%22action%22:%22dev.user.session%22,%22data%22:\{\}\}', {
                 headers: headers,
         
             })
+            /* Leaving empty handlers but not actually doing anything. Add later if needed */
                 .done(function (data, textStatus, jqXHR) {
-                    //console.log("Success handler: " + JSON.stringify(data) + " " + textStatus);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
-//                    console.log("Error handler: " + textStatus + " " + errorThrown);
                 })
                 .always(function (response, textStatus, jqXHR) { //;paf; see http://stackoverflow.com/a/19498463/2914328
-//                    console.log("jQuery version: " + $.fn.jquery);
-//                    console.log("arg1:", response);
-//                    console.log("arg2:", textStatus);
-//                    console.log("arg3:", jqXHR);
+                    /* In always because we will either have a live token in X-UserToken or a rejected transaction with 
+                    X-UserToken-Response populated with new one. The work happens here not 
+                    */
                     var responseToken = jqXHR.getResponseHeader('X-UserToken') ||jqXHR.getResponseHeader('X-UserToken-Response') ;
-//                    console.log("X-UserToken = " + responseToken);
-                    if (token != responseToken) {
-                        // If we come here, we are getting a new token
-                        window.localStorage.setItem('X-UserToken', responseToken);
-//                        console.log("Set X-UserToken in local storage to " + responseToken);
-                    }
-//                    console.log("this =  " +JSON.stringify(this));
                     usermenu.handleLoginStatus(response);
                 }
                 );
@@ -104,7 +74,6 @@ usermenu.init = function (properties) {
                 window.location.href = logoutURL;
             });
         });
-  //      console.log("In main thread, right before calling getSession()");
         this.getSession();
     }
     )
