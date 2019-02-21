@@ -65,7 +65,7 @@ usermenu.init = function (properties) {
                        } catch (e) {
                            console.log("Error: "+e);
                        }
-                       container.getSession(token);
+                       container.getSession(responseToken);
                 })
                 .always(function (response, textStatus, jqXHR) { //;paf; see http://stackoverflow.com/a/19498463/2914328
                     /* In always because we will either have a live token in X-UserToken or a rejected transaction with 

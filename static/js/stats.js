@@ -105,47 +105,6 @@ function loadReadCount(p) {
 ); 
 }
 
-function loadComments(p) {
-    $.get('/api/x_snc_devblog/v1/vfs/getComments?p=' + p , 
-    function(response) {
-        var commentBlock = "";
-        console.log("response = " + JSON.stringify(response, null, 4));
-        console.log(response);
-        response.result.comments.forEach( function(comment){
-            console.log("in loop with "+ comment.text);
-            commentBlock += "<li>"+comment.time + " <br />" + comment.author + " <br />" + comment.text+"</li>";
-        } 
-
-        );
-        $('#comments').html( commentBlock); 
-    }
-); 
-}
-
-function submitComment() {
-    console.log("Clicked submit");
-    var p = getPage();
-    var text = $('#comment-text').val();
-    var json = {};
-    json.path = p;
-    json.text = text;
-    var jsonString = JSON.stringify(json);
-    console.log(jsonString);
-    jQuery.ajax ({
-        url: '/api/x_snc_devblog/v1/vfs/postComment',
-        type: "POST",
-        data: jsonString,
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function(){
-            console.log("Submit post worked!");
-            loadComments(p);
-        }
-    });
-
-
-
-}
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var parameters = window.location.search.substring(1);
