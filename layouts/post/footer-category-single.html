@@ -1,3 +1,4 @@
+
 <ul class="stats">
     {{ if isset .Params "categories" }}
         {{ $categoryCount := (len .Params.categories) }}
@@ -44,8 +45,3 @@
     <li><div id="read-count"></div></li>
 </ul>
 
-<ul class="comments-block">
-    <li><div id="comments"></div></li>
-    <li><div id="comment-form"><textarea id="comment-text" ></textarea>  <button id="comment-button" onClick="submitComment()">Submit comment</button> </div></li>
-
-</ul>

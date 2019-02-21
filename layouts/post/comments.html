@@ -1,9 +1,8 @@
-{{ if ne .Site.DisqusShortname "" }}
-    <article class="post">
-        {{ template "_internal/disqus.html" . }}
-    </article>
-{{ else if .Site.Params.staticman.staticman }}
-    <article class="post">
-      {{ .Render "staticman" }}
-    </article>
-{{ end }}
+<div class="comments-block">
+    <div class="title">Comments</div>
+    <div id="comments"></div>
+    <div id="comment-notice"></div>
+    <div id="comment-form"><textarea id="comment-text"  ></textarea>  <button id="comment-button" onClick="submitComment()" disabled>Submit comment</button> </div>
+    <div id="comment-login"> <a  href="ssologin.do?relayState=/blog.do">Log in to leave a comment</a> </div>
+
+</div>
