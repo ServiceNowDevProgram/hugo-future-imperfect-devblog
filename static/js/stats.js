@@ -78,7 +78,12 @@ function submitComment(token) {
         },
         error: function(xhr, error_text, statusText) {
             var token = xhr.getResponseHeader('X-UserToken-Response');
-            submitComment(token);
+            if (token) {
+                submitComment(token);
+            } else {
+                console.log("Aborting comment posting, no token received");
+            }
+
         }
     });
 
