@@ -13,11 +13,11 @@
   <div id="content">
     {{ .Content }}
   </div>
-
+  <hr />
+  {{ .Render "comments" }}
   <footer>
     {{ .Render "footer-category-single" }}
   </footer>
   
 </article>
-{{ .Render "comments" }}
 {{ .Render "prev-next" }}

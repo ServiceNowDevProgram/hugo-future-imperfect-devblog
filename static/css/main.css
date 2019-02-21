@@ -1447,6 +1447,38 @@ dl {
 						color: rgba(160, 160, 160, 0.3);
 						margin-right: 0.75em;
 					}
+					
+			.comments-block {
+				clear: both;
+				cursor: default;
+				padding: 0;
+			}
+	
+			.comments-block  .title {
+				font-family: "Raleway", Helvetica, sans-serif;
+				font-weight: 600;
+			}
+			#comment-notice {
+				font-style: italic;
+			}
+
+
+				.comments-block li {
+					border-left: solid 1px rgba(160, 160, 160, 0.3);
+					font-family: inherit;
+					list-style-type: decimal;
+					padding-block-end: 20pt;
+				}
+				.comments-block li .commenter {
+					font-size: 1.2em;
+				}
+
+				.comments-block li .time {
+					font-size: 0.6em;
+				}
+			
+				.comments-block li .text {
+				}
 
 		.post > header .meta .tags {
 				cursor: default;
@@ -2239,7 +2271,7 @@ body {
 	-webkit-justify-content: space-between;
 	-ms-justify-content: space-between;
 	justify-content: space-between;
-	background-color: #000000;
+	background-color: #293e40;
 	border-bottom: solid 1px rgba(160, 160, 160, 0.3);
 	height: 3.5em;
 	left: 0;
@@ -2450,7 +2482,7 @@ body {
 	}
 
 		#header #search input {
-			color: #000000;
+			color: #ffffff;
 			width: 12em;
 		}
 
