@@ -14,12 +14,18 @@ function getPage() {
 
 $(function() {
     /*  DHS - 2019/02/20
-        I don't know if this is the best place for this but it is working. Amenable to factoring elsewhere as long as it binds callback
-        prior to first submit of the comment (ie, in the first second or so).
+        I don't know if this is the best place for these callback binding but it is working. 
+        Amenable to factoring elsewhere as long as it binds callback
+        prior to first submit of the comment or search (ie, in the first second or so).
     */
     $(document).ready(function() {
         $("#search").submit(function() {
             var query = $('input[name="q"]').val();
+            window.location.href = '/app.do#!search?q='+query+'&category=Blog';
+            return false;
+        }); 
+        $("#msearch").submit(function() {
+            var query = $('input[name="mq"]').val();
             window.location.href = '/app.do#!search?q='+query+'&category=Blog';
             return false;
         }); 

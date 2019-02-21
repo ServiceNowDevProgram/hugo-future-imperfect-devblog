@@ -49,7 +49,11 @@ usermenu.init = function (properties) {
                     /* In always because we will either have a live token in X-UserToken or a rejected transaction with 
                     X-UserToken-Response populated with new one. The work happens here not 
                     */
+                   try {
                     var responseToken = jqXHR.getResponseHeader('X-UserToken') ||jqXHR.getResponseHeader('X-UserToken-Response') ;
+                   } catch (e) {
+                       console.log("Error: "+e);
+                   }
                     usermenu.handleLoginStatus(response);
                 }
                 );
