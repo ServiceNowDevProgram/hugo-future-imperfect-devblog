@@ -3,10 +3,9 @@
 {{ $permalink := $.Scratch.Get "permalink" }}
 
 {{ if .Params.authors }}
-  {{ range first 1 .Params.authors }}
-    {{ range where ($.Site.GetPage "taxonomyTerm" "authors").Pages "Params.name" . }}
+{{ $path := printf "/authors/%s" (urlize .) }}
+  {{- with $.Site.GetPage $path }}  
       {{ $.Scratch.Set "twitter" .Params.twitter }}
-    {{ end }}
   {{ end }}
 {{ end }}
 
@@ -16,14 +15,6 @@
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
     </a>
-</li>
-
-<!-- Google Plus -->
-<li>
-  <a href="//plus.google.com/share?url={{ $permalink }}" target="_blank" class="share-btn google-plus">
-    <i class="fa fa-google-plus"></i>
-    <p>Google+</p>
-  </a>
 </li>
 
 <!-- Facebook -->

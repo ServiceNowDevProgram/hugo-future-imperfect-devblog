@@ -22,8 +22,7 @@
             <span>
                 
                 {{ range $author := .Params.authors  }} 
-                {{ range ( $.Site.GetPage "taxonomyTerm" "authors").Pages }}
-                {{ if eq $author .Params.name }}
+                {{- with $.Site.GetPage (printf "authors/%s" (urlize .)) }} 
                 <!--<li>-->
                 <a class="author" href="blog.do?p={{ .RelPermalink | safeURL}}">
 
@@ -32,7 +31,7 @@
                 
                 </a>
                 <!--</li>-->
-                {{ end }} {{ end }}{{ end }}
+                {{ end }} {{ end }}
             
             </span>
         {{ if .Site.Params.includeReadingTime }}

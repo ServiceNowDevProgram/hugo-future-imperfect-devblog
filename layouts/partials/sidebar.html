@@ -60,11 +60,11 @@
               </time>
               {{ if isset .Params "authors" }}
               {{ range first 1 .Params.authors }}
-                {{ range where ($.Site.GetPage "taxonomyTerm" "authors").Pages "Params.name" . }}
-                  <a class="author" href="blog.do?p={{ .RelPermalink | safeURL}}">
+              {{- with $.Site.GetPage (printf "authors/%s" (urlize .)) }} 
+                 <a class="author" href="blog.do?p={{ .RelPermalink | safeURL}}">
                     <img src="{{ $.Site.Params.devportal.vfs }}/{{ .Dir }}{{ .Params.photo }}"/>
                   </a>
-                {{ end }}
+                  {{ end }}
               {{ end }}
               {{end}}
             </header>
