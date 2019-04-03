@@ -69,6 +69,11 @@ function submitComment(token) {
     json.text = text;
     var jsonString = JSON.stringify(json);
 
+    if (!text) {
+        console.log("Not submitting empty comment");
+        return;
+    }
+
     jQuery.ajax ({
         url: '/api/x_snc_devblog/v1/vfs/postComment',
         beforeSend: function(request) {
