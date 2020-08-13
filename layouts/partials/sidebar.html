@@ -33,6 +33,42 @@
     {{ end }}
   </section>
 
+  <!-- Featured content list -->
+  <section id="featured-posts">
+    <div class="mini-posts">
+      <header>
+        <h3>Featured Posts</h3>
+      </header>
+      {{ range $key, $taxonomy := .Site.Taxonomies.featured }}
+      <div class="posts-container">
+        {{ range $taxonomy.Pages }}
+        <article class="mini-post">
+          <header>
+            <h3>
+              <a href="blog.do?p={{ .RelPermalink | safeURL }}">{{ .Title }}</a>
+            </h3>
+            {{ $.Scratch.Set "dateType" .Date }}
+            <time class="published" datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
+              {{ ($.Scratch.Get "dateType").Format "January 2, 2006" }}
+            </time>
+            {{ if isset .Params "authors" }}
+            {{ range first 1 .Params.authors }}
+            {{- with $.Site.GetPage (printf "authors/%s" (urlize .)) }} 
+               <a class="author" href="blog.do?p={{ .RelPermalink | safeURL}}">
+                  <img src="{{ $.Site.Params.devportal.vfs }}/{{ .Dir }}{{ .Params.photo }}"/>
+                </a>
+                {{ end }}
+              {{ end }}
+            {{end}}
+          </header>
+          {{ .Render "featured" }}
+        </article>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </section>
+
   <!-- Posts List -->
   <section id="recent-posts">
     <div class="mini-posts">
@@ -89,6 +125,7 @@
   <!-- Otherwise this section is shown for all other links -->
   {{ if ne ($.Scratch.Get "showCategories") false }}
   <!-- Categories List -->
+    <!-- Getting rid of categories
     <section id="categories">
       <header>
         <h3>
@@ -117,6 +154,7 @@
         </p>
         {{ end }}
     </section>
+    -->
   {{ end }}
 
 
