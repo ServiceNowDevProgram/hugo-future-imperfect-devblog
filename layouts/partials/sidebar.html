@@ -33,11 +33,14 @@
     {{ end }}
   </section>
 
+  
   <!-- Featured content list -->
   <section id="featured-posts">
     <div class="mini-posts">
       <header>
-        <h3>Featured Posts</h3>
+        <h3>
+          Featured Posts
+        </h3>
       </header>
       {{ range $key, $taxonomy := .Site.Taxonomies.featured }}
       <div class="posts-container">
